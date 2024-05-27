@@ -2,8 +2,10 @@
 ## URL de Ejecución 🌐
 - Puedes jugar el juego en línea en la siguiente URL: [Ejecutar Proyecto](https://darkelian.github.io/Clase13-Bootcamp-Triki/)
 
-## Capturas de Pantalla 📸
-*(Aquí puedes incluir algunas capturas de pantalla del juego en acción para mostrar la interfaz y la experiencia del usuario)*
+## Vistas 📸
+<div align="center">
+  <img src="https://github.com/darkelian/Clase13-Bootcamp-Triki/blob/main/triqui.gif" alt="Video de Demostración">
+</div>
 
 ## Autor:
 **Brayan Elian Peña Jaimes**
