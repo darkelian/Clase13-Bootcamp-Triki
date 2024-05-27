@@ -1,4 +1,6 @@
+// Espera a que todo el contenido del DOM esté cargado antes de ejecutar el script
 document.addEventListener("DOMContentLoaded", () => {
+    // Referencias a los elementos del DOM
     const startScreen = document.getElementById('blackhole');
     const gameScreen = document.getElementById('gameScreen');
     const centerHover = document.querySelector('.centerHover');
@@ -12,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultMessage = document.getElementById('resultMessage');
     const retryButton = document.getElementById('retryButton');
 
+    // Constantes y variables del juego
     const player1 = 'X';
     const player2 = 'O';
     let currentPlayer = player1;
@@ -23,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let player2Wins = 0;
     let ties = 0;
 
+    // Maneja el evento de clic en el botón de inicio (centerHover)
     centerHover.addEventListener('click', () => {
         centerHover.classList.add('open');
         setTimeout(() => {
@@ -32,10 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2000); // Tiempo de espera para la animación antes de iniciar el juego
     });
 
+    // Maneja el evento de clic en los botones de selección de modo de juego
     vsPlayerButton.addEventListener('click', () => startGame('player'));
     vsAIButton.addEventListener('click', () => startGame('ai'));
     retryButton.addEventListener('click', resetGame);
 
+    // Inicializa el juego en el modo seleccionado
     function startGame(mode) {
         gameMode = mode;
         gameActive = true;
@@ -52,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resultCard.classList.add('hidden');
     }
 
+    // Maneja el evento de clic en una celda del tablero
     function handleCellClick(event) {
         const index = event.target.dataset.index;
         if (boardState[index] === '' && gameActive) {
@@ -82,17 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Realiza el movimiento de la IA
     function makeAIMove() {
-        // Probabilidad de tomar el mejor movimiento
         const bestMoveProbability = 0.7; // 70% de tomar el mejor movimiento
-
         let move;
         if (Math.random() < bestMoveProbability) {
             move = getBestMove(); // Tomar el mejor movimiento
         } else {
             move = getRandomMove(); // Tomar un movimiento aleatorio
         }
-
         boardState[move] = player2;
         document.querySelector(`.cell[data-index='${move}']`).textContent = player2;
         if (checkWin()) {
@@ -110,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Calcula el mejor movimiento para la IA
     function getBestMove() {
         let bestScore = -Infinity;
         let move;
@@ -127,11 +133,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return move;
     }
 
+    // Obtiene un movimiento aleatorio
     function getRandomMove() {
         let availableMoves = boardState.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
         return availableMoves[Math.floor(Math.random() * availableMoves.length)];
     }
 
+    // Algoritmo Minimax para calcular el mejor movimiento
     function minimax(board, depth, isMaximizing) {
         let scores = {
             'X': -1,
@@ -168,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Verifica si hay un ganador
     function checkWinner(board) {
         const winPatterns = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -186,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
     }
 
+    // Verifica si hay un ganador en el estado actual del tablero
     function checkWin() {
         const winPatterns = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -198,15 +208,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Muestra el resultado del juego
     function showResult(message) {
         resultMessage.textContent = message;
         resultCard.classList.remove('hidden');
     }
 
+    // Reinicia el juego
     function resetGame() {
         startGame(gameMode);
     }
 
+    // Función para la animación del agujero negro
     blackhole('#blackhole');
 
     function blackhole(element) {
@@ -214,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
             w = window.innerWidth,
             cw = w,
             ch = h,
-            maxorbit = 255, // distance from center
+            maxorbit = 255, // distancia desde el centro
             centery = ch / 2,
             centerx = cw / 2;
 
@@ -222,14 +235,15 @@ document.addEventListener("DOMContentLoaded", () => {
         var currentTime = 0;
 
         var stars = [],
-            collapse = false, // if hovered
-            expanse = false; // if clicked
+            collapse = false, // si está en hover
+            expanse = false; // si está en clic
 
         var canvas = $('<canvas/>').attr({ width: cw, height: ch }).appendTo(element),
             context = canvas.get(0).getContext("2d");
 
         context.globalCompositeOperation = "multiply";
 
+        // Configuración de DPI para el canvas
         function setDPI(canvas, dpi) {
             if (!canvas.get(0).style.width)
                 canvas.get(0).style.width = canvas.get(0).width + 'px';
@@ -243,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.scale(scaleFactor, scaleFactor);
         }
 
+        // Función de rotación para las estrellas
         function rotate(cx, cy, x, y, angle) {
             var radians = angle,
                 cos = Math.cos(radians),
@@ -254,8 +269,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setDPI(canvas, 192);
 
+        // Clase de estrella
         var star = function () {
-
             var rands = [];
             rands.push(Math.random() * (maxorbit / 2) + 1);
             rands.push(Math.random() * (maxorbit / 2) + maxorbit);
@@ -290,8 +305,9 @@ document.addEventListener("DOMContentLoaded", () => {
             this.prevX = this.x;
             this.prevY = this.y;
         }
-        star.prototype.draw = function () {
 
+        // Dibuja la estrella en el canvas
+        star.prototype.draw = function () {
             if (!expanse) {
                 this.rotation = this.startRotation + (currentTime * this.speed);
                 if (!collapse) {
@@ -335,18 +351,21 @@ document.addEventListener("DOMContentLoaded", () => {
             this.prevY = this.y;
         }
 
+        // Maneja el evento de mouseover en el centro del hover
         $('.centerHover').on('mouseover', function () {
             if (expanse == false) {
                 collapse = true;
             }
         });
 
+        // Maneja el evento de mouseout en el centro del hover
         $('.centerHover').on('mouseout', function () {
             if (expanse == false) {
                 collapse = false;
             }
         });
 
+        // Maneja el evento de clic en el centro del hover
         $('.centerHover').on('click', function () {
             collapse = false;
             expanse = true;
@@ -359,6 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 2000);
         });
 
+        // Función de animación
         window.requestFrame = (function () {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
@@ -368,6 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
         })();
 
+        // Bucle de animación
         function loop() {
             var now = new Date().getTime();
             currentTime = (now - startTime) / 50;
@@ -384,6 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
             requestFrame(loop);
         }
 
+        // Inicializa la animación
         function init(time) {
             context.fillStyle = 'rgba(25,25,25,1)';
             context.fillRect(0, 0, cw, ch);

@@ -1,36 +1,39 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Triki</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="blackhole">
-        <div class="centerHover"><span>ENTER</span></div>
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML -->
+<html lang="es"> <!-- Inicio del documento HTML, especificando el idioma en español -->
+
+<head> <!-- Inicio de la sección de encabezado del documento -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres del documento como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página sea responsive, es decir, se adapte a la pantalla del dispositivo -->
+    <title>Juego de Triki</title> <!-- Define el título del documento, que se muestra en la pestaña del navegador -->
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza el archivo de estilos CSS con el documento HTML -->
+</head> <!-- Fin de la sección de encabezado del documento -->
+
+<body> <!-- Inicio del cuerpo del documento, donde se coloca el contenido principal -->
+    <div id="blackhole"> <!-- Un div con id "blackhole", posiblemente para una animación o efecto visual -->
+        <div class="centerHover"><span>ENTER</span></div> <!-- Un div que probablemente muestra un mensaje de "ENTER" centrado -->
     </div>
-    <div id="gameScreen" class="game-screen hidden">
-        <h1>Juego de Triki</h1>
-        <div id="board" class="board">
+    <div id="gameScreen" class="game-screen hidden"> <!-- Un div que representa la pantalla del juego, inicialmente oculto -->
+        <h1>Juego de Triki</h1> <!-- El título del juego -->
+        <div id="board" class="board"> <!-- Un div que representa el tablero del juego -->
             <!-- Las celdas del tablero se generarán dinámicamente -->
         </div>
-        <div class="options">
-            <button id="vsPlayer">Jugador vs Jugador</button>
-            <button id="vsAI">Jugador vs Máquina</button>
+        <div class="options"> <!-- Un div que contiene las opciones del juego -->
+            <button id="vsPlayer">Jugador vs Jugador</button> <!-- Botón para iniciar un juego Jugador vs Jugador -->
+            <button id="vsAI">Jugador vs Máquina</button> <!-- Botón para iniciar un juego Jugador vs Máquina -->
         </div>
-        <div class="scoreboard">
-            <h2>Marcador</h2>
-            <p id="player1Wins">Jugador 1: 0 victorias</p>
-            <p id="player2Wins">Jugador 2: 0 victorias</p>
-            <p id="ties">Empates: 0</p>
+        <div class="scoreboard"> <!-- Un div que representa el marcador del juego -->
+            <h2>Marcador</h2> <!-- Título del marcador -->
+            <p id="player1Wins">Jugador 1: 0 victorias</p> <!-- Muestra las victorias del Jugador 1 -->
+            <p id="player2Wins">Jugador 2: 0 victorias</p> <!-- Muestra las victorias del Jugador 2 -->
+            <p id="ties">Empates: 0</p> <!-- Muestra el número de empates -->
         </div>
-        <div id="resultCard" class="result-card hidden">
-            <p id="resultMessage"></p>
-            <button id="retryButton">Intentar de nuevo</button>
+        <div id="resultCard" class="result-card hidden"> <!-- Un div que muestra el resultado del juego, inicialmente oculto -->
+            <p id="resultMessage"></p> <!-- Muestra el mensaje de resultado -->
+            <button id="retryButton">Intentar de nuevo</button> <!-- Botón para intentar de nuevo -->
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Enlaza la biblioteca jQuery al documento -->
+    <script src="script.js"></script> <!-- Enlaza el archivo de script JavaScript al documento -->
+</body> <!-- Fin del cuerpo del documento -->
+
+</html> <!-- Fin del documento HTML -->
