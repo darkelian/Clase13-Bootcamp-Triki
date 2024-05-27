@@ -4,6 +4,9 @@ body, html {
     margin: 0;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
+    h1{
+        color: #fff;
+    }
 }
 
 /* Estilo para el cuerpo del documento */
